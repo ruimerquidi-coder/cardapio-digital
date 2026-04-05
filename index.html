@@ -9,73 +9,92 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom, #0d0d0d, #000);
+  background: #0b0b0b;
   color: #fff;
 }
 
-/* HEADER */
+/* HEADER COM IMAGEM */
 header {
-  text-align: center;
-  padding: 60px 20px;
-  background: linear-gradient(90deg, #8B0000, #001f3f);
-  animation: fadeIn 2s ease;
+  height: 300px;
+  background: url('images/fundo.jpg') center/cover no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
 }
 
 header h1 {
+  position: relative;
+  z-index: 1;
   font-size: 32px;
-  margin: 0;
-}
-
-header p {
-  color: #ccc;
+  text-align: center;
 }
 
 /* CONTAINER */
 .container {
   padding: 20px;
+  max-width: 900px;
+  margin: auto;
 }
 
 /* CATEGORIA */
 .category {
   margin-bottom: 50px;
-  animation: fadeUp 1s ease;
 }
 
+/* TÍTULO */
 .category h2 {
-  border-left: 4px solid #f2a900;
+  border-left: 5px solid #f2a900;
   padding-left: 10px;
   margin-bottom: 20px;
 }
 
-/* ITEM */
+/* CARD */
 .item {
-  background: #1a1a1a;
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  transition: 0.3s;
+  background: #161616;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 25px;
+  transition: 0.4s;
+  opacity: 0;
+  transform: translateY(30px);
 }
 
+.item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* HOVER */
 .item:hover {
-  transform: scale(1.03);
-  background: #262626;
+  transform: scale(1.02);
 }
 
 /* IMAGEM */
-.image-placeholder {
+.item img {
   width: 100%;
-  height: 160px;
-  background: #333;
-  border-radius: 10px;
-  margin-bottom: 10px;
+  height: 180px;
+  object-fit: cover;
 }
 
-/* TEXTO */
-.item h3 {
+/* CONTEÚDO */
+.content {
+  padding: 15px;
+}
+
+.content h3 {
   margin: 0;
 }
 
-.item p {
+.content p {
   color: #bbb;
   font-size: 14px;
 }
@@ -83,29 +102,23 @@ header p {
 .price {
   color: #f2a900;
   font-weight: bold;
+  margin-top: 5px;
 }
 
-/* ANIMAÇÕES */
-@keyframes fadeIn {
-  from {opacity:0;}
-  to {opacity:1;}
+.badge {
+  color: #000;
+  background: #f2a900;
+  padding: 3px 8px;
+  font-size: 12px;
+  border-radius: 5px;
+  margin-left: 5px;
 }
 
-@keyframes fadeUp {
-  from {
-    opacity:0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity:1;
-    transform: translateY(0);
-  }
-}
-
+/* FOOTER */
 footer {
   text-align: center;
   padding: 20px;
-  color: #777;
+  color: #666;
 }
 </style>
 </head>
@@ -114,7 +127,6 @@ footer {
 
 <header>
   <h1>🔥 Pedrinho's Brasa & Mar 🌊</h1>
-  <p>Uma experiência gastronômica única</p>
 </header>
 
 <div class="container">
@@ -123,10 +135,12 @@ footer {
   <h2>🔥 Entradas</h2>
 
   <div class="item">
-    <div class="image-placeholder"></div>
-    <h3>Entrada Especial</h3>
-    <p>Descrição deliciosa do prato...</p>
-    <div class="price">R$ 00,00</div>
+    <img src="images/entrada.jpg">
+    <div class="content">
+      <h3>Entrada Especial <span class="badge">Mais Pedido</span></h3>
+      <p>Uma combinação perfeita de sabores preparada com ingredientes selecionados</p>
+      <div class="price">R$ 00,00</div>
+    </div>
   </div>
 
 </div>
@@ -135,10 +149,12 @@ footer {
   <h2>🥩 Parrilla</h2>
 
   <div class="item">
-    <div class="image-placeholder"></div>
-    <h3>Entrecot Premium</h3>
-    <p>Corte selecionado preparado na brasa</p>
-    <div class="price">R$ 00,00</div>
+    <img src="images/entrecot.jpg">
+    <div class="content">
+      <h3>Entrecot Premium</h3>
+      <p>Corte nobre preparado na brasa com sabor intenso e suculento</p>
+      <div class="price">R$ 00,00</div>
+    </div>
   </div>
 
 </div>
@@ -147,10 +163,12 @@ footer {
   <h2>🌊 À Beira-Mar</h2>
 
   <div class="item">
-    <div class="image-placeholder"></div>
-    <h3>Salmão Grelhado</h3>
-    <p>Fresco e suculento, direto do mar</p>
-    <div class="price">R$ 00,00</div>
+    <img src="images/salmao.jpg">
+    <div class="content">
+      <h3>Salmão Grelhado</h3>
+      <p>Fresco e delicado, preparado com toque especial do chef</p>
+      <div class="price">R$ 00,00</div>
+    </div>
   </div>
 
 </div>
@@ -160,6 +178,20 @@ footer {
 <footer>
 © 2026 Pedrinho's Brasa & Mar
 </footer>
+
+<script>
+// ANIMAÇÃO AO ROLAR
+const items = document.querySelectorAll('.item');
+
+window.addEventListener('scroll', () => {
+  items.forEach(item => {
+    const top = item.getBoundingClientRect().top;
+    if (top < window.innerHeight - 50) {
+      item.classList.add('show');
+    }
+  });
+});
+</script>
 
 </body>
 </html>
