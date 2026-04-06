@@ -1,130 +1,215 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pedrinho's Parrilla</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pedrinho's Parrilla</title>
 
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'Poppins', sans-serif; background:#0a0a0a; color:#fff; }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-    header {
-      background:#000;
-      padding:20px;
-      text-align:center;
-      position:sticky;
-      top:0;
-      z-index:1000;
-    }
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
 
-    header h1 { color:#ff5e00; }
+body {
+  font-family:'Poppins', sans-serif;
+  background:#0a0a0a;
+  color:#fff;
+}
 
-    nav { margin-top:10px; }
-    nav a {
-      margin:0 10px;
-      color:#fff;
-      text-decoration:none;
-      font-weight:500;
-    }
+/* HEADER PREMIUM */
+header {
+  position:fixed;
+  width:100%;
+  top:0;
+  z-index:1000;
+  backdrop-filter: blur(10px);
+  background: rgba(0,0,0,0.6);
+  padding:15px;
+  text-align:center;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
 
-    .hero {
-      height:90vh;
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('images/restaurante.jpg') center/cover;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-    }
+header h1 {
+  color:#ff5e00;
+  letter-spacing:2px;
+}
 
-    .hero h2 {
-      font-size:2.5rem;
-      animation: flame 2s infinite alternate;
-    }
+nav {
+  margin-top:8px;
+}
 
-    @keyframes flame {
-      from { color:#ff5e00; }
-      to { color:#ffae00; }
-    }
+nav a {
+  margin:0 12px;
+  color:#ccc;
+  text-decoration:none;
+  transition:0.3s;
+}
 
-    .btn {
-      margin-top:20px;
-      padding:12px 20px;
-      background:#ff5e00;
-      border:none;
-      border-radius:8px;
-      color:#fff;
-      text-decoration:none;
-    }
+nav a:hover {
+  color:#ff5e00;
+}
 
-    section { padding:60px 20px; max-width:1200px; margin:auto; }
+/* HERO ABSURDO */
+.hero {
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
 
-    .search {
-      margin-bottom:20px;
-      text-align:center;
-    }
+/* IMAGEM COM ZOOM */
+.hero::before {
+  content:'';
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85)),
+    url('images/restaurante.jpg') no-repeat center 30% / cover;
+  z-index:-1;
+  animation: zoomHero 12s ease-in-out infinite alternate;
+}
 
-    .search input {
-      padding:10px;
-      width:80%;
-      border-radius:8px;
-      border:none;
-    }
+@keyframes zoomHero {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}
 
-    .categories {
-      text-align:center;
-      margin-bottom:20px;
-    }
+.hero h2 {
+  font-size:3rem;
+  color:#ff5e00;
+}
 
-    .categories button {
-      margin:5px;
-      padding:10px 15px;
-      border:none;
-      border-radius:20px;
-      background:#1a1a1a;
-      color:#fff;
-      cursor:pointer;
-    }
+.hero p {
+  color:#ccc;
+  margin-top:10px;
+}
 
-    .cards {
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
-      gap:20px;
-    }
+/* BOTÃO PREMIUM */
+.btn {
+  margin-top:25px;
+  padding:14px 30px;
+  background:linear-gradient(45deg, #ff5e00, #ffae00);
+  border-radius:30px;
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  transition:0.3s;
+  box-shadow:0 0 15px rgba(255,94,0,0.4);
+}
 
-    .card {
-      background:#111;
-      border-radius:15px;
-      overflow:hidden;
-      transition:0.3s;
-    }
+.btn:hover {
+  transform:scale(1.08);
+  box-shadow:0 0 30px rgba(255,94,0,0.9);
+}
 
-    .card:hover { transform:scale(1.05); }
+/* SECTIONS */
+section {
+  padding:80px 20px;
+  max-width:1200px;
+  margin:auto;
+}
 
-    .card img { width:100%; height:200px; object-fit:cover; }
+/* CARDÁPIO */
+.search input {
+  padding:12px;
+  width:100%;
+  max-width:500px;
+  border-radius:10px;
+  border:none;
+}
 
-    .card-content { padding:15px; }
+.categories {
+  margin:25px 0;
+}
 
-    .card-content h3 { color:#ff5e00; }
+.categories button {
+  margin:5px;
+  padding:10px 18px;
+  border-radius:30px;
+  border:none;
+  background:#1a1a1a;
+  color:#fff;
+  cursor:pointer;
+  transition:0.3s;
+}
 
-    .reviews { background:#111; padding:15px; margin:10px 0; border-radius:10px; }
+.categories button:hover {
+  background:#ff5e00;
+}
 
-    .wave {
-      height:100px;
-      background: linear-gradient(to right, #001f3f, #0074D9);
-      animation: wave 4s infinite linear;
-    }
+/* CARDS TOP */
+.cards {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+  gap:25px;
+}
 
-    @keyframes wave {
-      0% { background-position:0 0; }
-      100% { background-position:1000px 0; }
-    }
+.card {
+  background:#111;
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid #222;
+  transition:0.3s;
+}
 
-    footer { text-align:center; padding:30px; background:#000; }
-  </style>
+.card:hover {
+  transform:translateY(-8px) scale(1.03);
+}
+
+.card img {
+  width:100%;
+  height:200px;
+  object-fit:cover;
+}
+
+.card-content {
+  padding:18px;
+}
+
+.card-content h3 {
+  color:#ff5e00;
+}
+
+/* AVALIAÇÕES */
+.reviews {
+  background:#111;
+  padding:20px;
+  margin:15px 0;
+  border-radius:15px;
+  border:1px solid #222;
+}
+
+/* CONTATO */
+#contato h2 {
+  margin-bottom:20px;
+}
+
+#contato .btn {
+  display:inline-block;
+  margin-top:15px;
+}
+
+/* MAPA */
+iframe {
+  border-radius:15px;
+  margin-top:20px;
+}
+
+/* FOOTER */
+footer {
+  text-align:center;
+  padding:30px;
+  background:#000;
+  border-top:1px solid #222;
+}
+</style>
 </head>
+
 <body>
 
 <header>
@@ -137,8 +222,11 @@
 </header>
 
 <section class="hero">
-  <h2>🔥 Da Brasa à Beira Mar 🌊</h2>
-  <a class="btn" href="https://wa.me/5551996396133" target="_blank">Reservar Agora</a>
+  <h2>🔥 Pedrinho's Parrilla</h2>
+  <p>Da brasa à beira mar • Experiência única</p>
+  <a class="btn" href="https://wa.me/5551996396133" target="_blank">
+    Reservar Agora
+  </a>
 </section>
 
 <section id="cardapio">
@@ -175,8 +263,6 @@
   </div>
 </section>
 
-<div class="wave"></div>
-
 <section id="avaliacoes">
   <h2>Avaliações</h2>
   <div class="reviews">⭐️⭐️⭐️⭐️⭐️ Melhor experiência gastronômica!</div>
@@ -185,13 +271,19 @@
 
 <section id="contato">
   <h2>Contato</h2>
+
   <a class="btn" href="https://wa.me/5551996396133" target="_blank">WhatsApp</a>
 
-  <h3 style="margin-top:20px">Localização</h3>
-  <iframe src="https://www.google.com/maps?q=-29.6868,-53.8069&output=embed" width="100%" height="300"></iframe>
+  <h3 style="margin-top:30px;">Localização</h3>
+
+  <iframe src="https://www.google.com/maps?q=-29.6868,-53.8069&output=embed"
+          width="100%" height="300">
+  </iframe>
 
   <div style="margin-top:20px">
-    <a class="btn" href="https://www.instagram.com/pedrinhosparrilla" target="_blank">Instagram</a>
+    <a class="btn" href="https://www.instagram.com/pedrinhosparrilla" target="_blank">
+      Instagram
+    </a>
   </div>
 </section>
 
@@ -200,23 +292,23 @@
 </footer>
 
 <script>
-  function filter(category) {
-    let cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
-      if (category === 'all' || card.dataset.category === category) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-  }
-
-  document.getElementById('searchInput').addEventListener('keyup', function() {
-    let value = this.value.toLowerCase();
-    document.querySelectorAll('.card').forEach(card => {
-      card.style.display = card.innerText.toLowerCase().includes(value) ? 'block' : 'none';
-    });
+function filter(category) {
+  let cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    card.style.display =
+      category === 'all' || card.dataset.category === category
+      ? 'block' : 'none';
   });
+}
+
+document.getElementById('searchInput').addEventListener('keyup', function() {
+  let value = this.value.toLowerCase();
+  document.querySelectorAll('.card').forEach(card => {
+    card.style.display =
+      card.innerText.toLowerCase().includes(value)
+      ? 'block' : 'none';
+  });
+});
 </script>
 
 </body>
