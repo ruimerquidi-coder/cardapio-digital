@@ -1,196 +1,222 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Pedrinho's Brasa & Mar</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedrinho's Parrilla</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-<style>
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #0b0b0b;
-  color: #fff;
-}
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Poppins', sans-serif; background:#0a0a0a; color:#fff; }
 
-/* HEADER */
-header {
-  position: sticky;
-  top: 0;
-  background: #111;
-  padding: 15px;
-  text-align: center;
-  z-index: 1000;
-  border-bottom: 1px solid #222;
-}
+    header {
+      background:#000;
+      padding:20px;
+      text-align:center;
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
 
-header h1 {
-  margin: 0;
-  font-size: 18px;
-}
+    header h1 { color:#ff5e00; }
 
-/* MENU */
-.menu {
-  display: flex;
-  overflow-x: auto;
-  gap: 10px;
-  padding: 10px;
-  background: #111;
-}
+    nav { margin-top:10px; }
+    nav a {
+      margin:0 10px;
+      color:#fff;
+      text-decoration:none;
+      font-weight:500;
+    }
 
-.menu button {
-  background: #222;
-  border: none;
-  color: #fff;
-  padding: 10px 15px;
-  border-radius: 20px;
-  cursor: pointer;
-}
+    .hero {
+      height:90vh;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('restaurante.jpg') center/cover;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+    }
 
-.menu button:hover {
-  background: #f2a900;
-  color: #000;
-}
+    .hero h2 {
+      font-size:2.5rem;
+      animation: flame 2s infinite alternate;
+    }
 
-/* CONTAINER */
-.container {
-  padding: 15px;
-}
+    @keyframes flame {
+      from { color:#ff5e00; }
+      to { color:#ffae00; }
+    }
 
-/* CATEGORY */
-.category {
-  margin-bottom: 30px;
-}
+    .btn {
+      margin-top:20px;
+      padding:12px 20px;
+      background:#ff5e00;
+      border:none;
+      border-radius:8px;
+      color:#fff;
+      text-decoration:none;
+    }
 
-.category h2 {
-  margin-bottom: 15px;
-  color: #f2a900;
-}
+    section { padding:60px 20px; max-width:1200px; margin:auto; }
 
-/* CARD */
-.item {
-  display: flex;
-  background: #161616;
-  border-radius: 12px;
-  margin-bottom: 15px;
-  overflow: hidden;
-  transition: 0.3s;
-}
+    .search {
+      margin-bottom:20px;
+      text-align:center;
+    }
 
-.item:hover {
-  transform: scale(1.02);
-}
+    .search input {
+      padding:10px;
+      width:80%;
+      border-radius:8px;
+      border:none;
+    }
 
-/* IMG */
-.item img {
-  width: 120px;
-  height: 100px;
-  object-fit: cover;
-}
+    .categories {
+      text-align:center;
+      margin-bottom:20px;
+    }
 
-/* TEXT */
-.content {
-  padding: 10px;
-  flex: 1;
-}
+    .categories button {
+      margin:5px;
+      padding:10px 15px;
+      border:none;
+      border-radius:20px;
+      background:#1a1a1a;
+      color:#fff;
+      cursor:pointer;
+    }
 
-.content h3 {
-  margin: 0;
-  font-size: 15px;
-}
+    .cards {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+      gap:20px;
+    }
 
-.content p {
-  font-size: 12px;
-  color: #bbb;
-}
+    .card {
+      background:#111;
+      border-radius:15px;
+      overflow:hidden;
+      transition:0.3s;
+    }
 
-.price {
-  color: #f2a900;
-  font-weight: bold;
-}
+    .card:hover { transform:scale(1.05); }
 
-/* BADGE */
-.badge {
-  background: #f2a900;
-  color: #000;
-  font-size: 10px;
-  padding: 2px 6px;
-  border-radius: 5px;
-  margin-left: 5px;
-}
+    .card img { width:100%; height:200px; object-fit:cover; }
 
-/* SCROLL */
-html {
-  scroll-behavior: smooth;
-}
-</style>
+    .card-content { padding:15px; }
+
+    .card-content h3 { color:#ff5e00; }
+
+    .reviews { background:#111; padding:15px; margin:10px 0; border-radius:10px; }
+
+    .wave {
+      height:100px;
+      background: linear-gradient(to right, #001f3f, #0074D9);
+      animation: wave 4s infinite linear;
+    }
+
+    @keyframes wave {
+      0% { background-position:0 0; }
+      100% { background-position:1000px 0; }
+    }
+
+    footer { text-align:center; padding:30px; background:#000; }
+  </style>
 </head>
-
 <body>
 
 <header>
-  <h1>🔥 Pedrinho's Brasa & Mar</h1>
+  <h1>Pedrinho's Parrilla</h1>
+  <nav>
+    <a href="#cardapio">Cardápio</a>
+    <a href="#avaliacoes">Avaliações</a>
+    <a href="#contato">Contato</a>
+  </nav>
 </header>
 
-<div class="menu">
-  <button onclick="scrollToSection('entradas')">Entradas</button>
-  <button onclick="scrollToSection('parrilla')">Parrilla</button>
-  <button onclick="scrollToSection('mar')">Beira-Mar</button>
-</div>
+<section class="hero">
+  <h2>🔥 Da Brasa à Beira Mar 🌊</h2>
+  <a class="btn" href="https://wa.me/5551996396133" target="_blank">Reservar Agora</a>
+</section>
 
-<div class="container">
+<section id="cardapio">
+  <h2>Cardápio</h2>
 
-<!-- ENTRADAS -->
-<div class="category" id="entradas">
-  <h2>🔥 Entradas</h2>
-
-  <div class="item">
-    <img src="images/entrada.jpg">
-    <div class="content">
-      <h3>Entrada Especial <span class="badge">Top</span></h3>
-      <p>Sabores intensos que abrem sua experiência gastronômica</p>
-      <div class="price">R$ 39,90</div>
-    </div>
+  <div class="search">
+    <input type="text" id="searchInput" placeholder="Buscar prato...">
   </div>
 
-</div>
-
-<!-- PARRILLA -->
-<div class="category" id="parrilla">
-  <h2>🥩 Parrilla</h2>
-
-  <div class="item">
-    <img src="images/entrecot.jpg">
-    <div class="content">
-      <h3>Entrecot Premium</h3>
-      <p>Corte nobre preparado na brasa com sabor marcante</p>
-      <div class="price">R$ 89,90</div>
-    </div>
+  <div class="categories">
+    <button onclick="filter('all')">Todos</button>
+    <button onclick="filter('carne')">Carnes</button>
+    <button onclick="filter('peixe')">Peixes</button>
   </div>
 
-</div>
+  <div class="cards" id="menu">
 
-<!-- MAR -->
-<div class="category" id="mar">
-  <h2>🌊 À Beira-Mar</h2>
-
-  <div class="item">
-    <img src="images/salmao.jpg">
-    <div class="content">
-      <h3>Salmão Grelhado</h3>
-      <p>Fresco, leve e preparado com toque especial do chef</p>
-      <div class="price">R$ 79,90</div>
+    <div class="card" data-category="carne">
+      <img src="prato.jpg">
+      <div class="card-content">
+        <h3>Entrecot com Purê</h3>
+        <p>Carne macia com molho especial e purê cremoso.</p>
+      </div>
     </div>
+
+    <div class="card" data-category="peixe">
+      <img src="prato.jpg">
+      <div class="card-content">
+        <h3>Salmão Especial</h3>
+        <p>Salmão grelhado com toque da casa.</p>
+      </div>
+    </div>
+
   </div>
+</section>
 
-</div>
+<div class="wave"></div>
 
-</div>
+<section id="avaliacoes">
+  <h2>Avaliações</h2>
+  <div class="reviews">⭐️⭐️⭐️⭐️⭐️ Melhor experiência gastronômica!</div>
+  <div class="reviews">⭐️⭐️⭐️⭐️⭐️ Ambiente lindo e comida perfeita.</div>
+</section>
+
+<section id="contato">
+  <h2>Contato</h2>
+  <a class="btn" href="https://wa.me/5551996396133" target="_blank">WhatsApp</a>
+
+  <h3 style="margin-top:20px">Localização</h3>
+  <iframe src="https://www.google.com/maps?q=-29.6868,-53.8069&output=embed" width="100%" height="300"></iframe>
+
+  <div style="margin-top:20px">
+    <a class="btn" href="https://www.instagram.com/pedrinhosparrilla" target="_blank">Instagram</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Pedrinho's Parrilla</p>
+</footer>
 
 <script>
-function scrollToSection(id) {
-  document.getElementById(id).scrollIntoView();
-}
+  function filter(category) {
+    let cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      if (category === 'all' || card.dataset.category === category) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  document.getElementById('searchInput').addEventListener('keyup', function() {
+    let value = this.value.toLowerCase();
+    document.querySelectorAll('.card').forEach(card => {
+      card.style.display = card.innerText.toLowerCase().includes(value) ? 'block' : 'none';
+    });
+  });
 </script>
 
 </body>
